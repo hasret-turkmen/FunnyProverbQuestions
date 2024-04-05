@@ -5,249 +5,100 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+
 
 public class FunnyProverbQuestion {
     public static void main(String[] args) {
-        String[] turkishProverbs = {
-                "Damlaya damlaya göl olur",
-                "Ağaç yaşken eğilir",
-                "Bir elin nesi var, iki elin sesi var",
-                "Sabır acıdır, meyvesi tatlıdır",
-                "Taşıma suyla değirmen dönmez",
-                "Az veren candan, çok veren maldan",
-                "Damdan düşenin halinden damdan düşen anlar",
-                "Gülü seven dikenine katlanır",
-                "Akıl akıldan üstündür",
-                "Borç yiğidin kamçısıdır",
-                "Dert paylaşıldıkça azalır",
-                "Gözden uzak olan gönülden de uzak olur",
-                "Hak yerini bulur",
-                "Rüzgar eken fırtına biçer",
-                "Tatlı dil yılanı deliğinden çıkarır",
-                "Ucuz etin yahnisi yavan olur",
-                "Varlık içinde darlık",
-                "Zararın neresinden dönülse kardır",
-                "Aslan yattığı yerden belli olur",
-                "Can çıkmayınca huy çıkmaz",
-                "İyi dost kara günde belli olur",
-                "Bir lisan, bir insan; iki lisan, iki insan",
-                "Sabah ola, hayır ola",
-                "Su testisi su yolunda kırılır",
-                "Yatan aslandan koşan tilki yeğdir",
-                "Ateş olmayan yerden duman çıkmaz",
-                "Balık baştan kokar",
-                "Düşenin dostu olmaz",
-                "Gülme komşuna, gelir başına",
-                "Her şeyin yenisi, dostun eskisi makbuldür.",
-                "Mart kapıdan baktırır, kazma kürek yaktırır",
-                "Nerede birlik, orada dirlik",
-                "Olmayacak duaya amin denmez",
-                "Para parayı çeker",
-                "Yaş kesen başı keser",
-                "Zenginin malı, züğürdün çenesini yorar",
-                "Açık ağız aç kalmaz",
-                "Küçük suda büyük balık olmaz",
-                "Bir musibet bin nasihatten iyidir",
-                "Güneş balçıkla sıvanmaz",
-                "Üzüm üzüme baka baka kararır",
-                "Taş yerinde ağırdır",
-                "Kaz gelen yerden tavuk esirgenmez",
-                "Kedi uzanamadığı ciğerine mundar der",
-                "Ayağını yorganına göre uzat",
-        };
+        //create objects from Proverbs, Antonyms ve Puns classes
+        Proverbs proverbs = new Proverbs();
+        Antonyms antonyms = new Antonyms();
+        Puns puns = new Puns();
 
-        String[][] turkishAntonyms = {
-                {"sabah", "akşam"},
-                {"ucuz", "pahalı"},
-                {"sıcak", "soğuk"},
-                {"büyük", "küçük"},
-                {"aç", "tok"},
-                {"güçlü", "zayıf"},
-                {"hızlı", "yavaş"},
-                {"zenginin", "fakirin"},
-                {"dost", "düşman"},
-                {"hayır", "evet"},
-                {"yaş", "kuru"},
-                {"acıdır", "tatlıdır"},
-                {"dönmez", "döner"},
-                {"aydınlık", "karanlık"},
-                {"tatlı", "ekşi"},
-                {"eski", "yeni"},
-                {"mutlu", "mutsuz"},
-                {"varlık", "yokluk"},
-                {"uzak", "yakın"},
-                {"kardır", "yağmurdur"},
-                {"erken", "geç"},
-                {"az", "çok"},
-                {"sessiz", "gürültülü"},
-                {"kapalı", "açık"},
-                {"doğru", "yanlış"},
-                {"ateş", "su"},
-                {"dostu", "düşmanı"},
-                {"giriş", "çıkış"},
-                {"özgür", "tutsak"},
-                {"güzel", "çirkin"},
-                {"sağlam", "kırık"},
-                {"aktif", "pasif"},
-                {"bilge", "cahil"},
-                {"yaşken", "kuruyken"},
-                {"cesur", "korkak"},
-                {"acıdır", "tatlıdır"},
-                {"gülme", "ağlama"},
-                {"veren", "alan"},
-                {"düşenin", "kalkanın"},
-                {"düşen", "kalkan"},
-                {"gelen", "giden"},
-                {"ağırdır", "hafiftir"},
-                {"küçük", "büyük"},
-                {"büyük", "küçük"},
-                {"açık", "kapalı"},
-                {"iyimser", "kötümser"},
-                {"zor", "kolay"},
-                {"esirgenmez", "esirgenir"},
-                {"gelir", "gelmez"},
-                {"ağır", "hafif"},
-                {"esnek", "katı"},
-                {"şanslı", "şanssız"},
-                {"net", "belirsiz"},
-                {"sabit", "değişken"},
-                {"yeni", "eski"},
-                {"dik", "yatay"},
-                {"anlaşılır", "karmaşık"},
-                {"doğal", "yapay"},
-                {"mümkün", "imkansız"},
-                {"bilinçli", "bilinçsiz"},
-                {"eskisi", "yenisi"},
-                {"yüksek", "alçak"},
-                {"anlamlı", "anlamsız"},
-                {"kesin", "muğlak"},
-                {"dolu", "boş"},
-                {"güvenli", "tehlikeli"},
-                {"sıcakkanlı", "soğukkanlı"},
-                {"akıllı", "aptal"},
-                {"cömert", "cimri"},
-                {"kısa", "uzun"},
-                {"önden", "arkadan"},
-                {"açık", "kapalı"},
-                {"keskin", "körelmiş"},
-                {"parlak", "sönük"},
-                {"görünür", "görünmez"},
-                {"tamamlanmış", "tamamlanmamış"},
-                {"yaş", "kuru"},
-                {"aktif", "inaktif"},
-                {"batı", "doğu"},
-                {"kuzey", "güney"},
-                {"ilk", "son"},
-                {"yaz", "kış"},
-                {"ilkbahar", "sonbahar"},
-                {"öncesi", "sonrası"},
-                {"iç", "dış"},
-                {"geniş", "dar"},
-                {"kalın", "ince"},
-                {"zengin", "yoksul"},
-                {"sert", "yumuşak"},
-                {"kazanç", "kayıp"},
-                {"başarı", "başarısızlık"},
-                {"mutlu", "üzgün"},
-                {"gelişmiş", "geri kalmış"},
-                {"tam", "eksik"},
-                {"kalıcı", "geçici"},
-                {"genç", "yaşlı"},
-                {"yararlı", "zararlı"},
-                {"kesin", "belirsiz"},
-                {"anlayışlı", "anlayışsız"},
-                {"doğru", "eğri"},
-                {"tatlıdır", "ekşidir"},
-                {"azalır", "çoğalır"}
-        };
-
-        String[][] changePairs =
-                {
-                        {"göl", "deniz"},
-                        {"bir", "on"},
-                        {"iki", "beş"},
-                        {"taş", "dağ"},
-                        {"su", "çöl"},
-                        {"damdan", "pencereden"},
-                        {"gülü", "papatyayı"},
-                        {"akıl", "kalp"},
-                        {"borç", "haraç"},
-                        {"dert", "mutluluk"},
-                        {"hak", "haksızlık"},
-                        {"rüzgar", "tsunami"},
-                        {"aslan", "penguen"},
-                        {"can", "kemik"},
-                        {"tilki", "kurt"},
-                        {"balık", "balina"},
-                        {"komşu", "ev sahibi"},
-                        {"mart", "nisan"},
-                        {"nerede", "kaçta"},
-                        {"duaya", "ibadete"},
-                        {"para", "fakirlik"},
-                        {"ayağını", "elini"},
-                        {"güneş", "ay"},
-                        {"üzüm", "böğürtlen"},
-                        {"çeker", "iter"},
-                        {"tavuk", "ayı"},
-                        {"kedi", "köpek"},
-                        {"yorganına", "yatağına"},
-                        {"kaz", "dinozor"},
-                };
-
-        Map<String, String> antonyms = new HashMap<>();
-        for (String[] antonymPair : turkishAntonyms) {
-            antonyms.put(antonymPair[0], antonymPair[1]);
+        //create a map from antonyms and add all antonyms to the map
+        Map<String, String> antonymsList = new HashMap<>();
+        for (String[] antonymPair : antonyms.turkishAntonyms) {
+            antonymsList.put(antonymPair[0], antonymPair[1]);
         }
 
+        //create a map from punPairs and add all punPairs to the map
         Map<String, String> changes = new HashMap<>();
-        for (String[] changePair : changePairs) {
+        for (String[] changePair : puns.punPairs) {
             changes.put(changePair[0], changePair[1]);
         }
 
-        for (String proverb : turkishProverbs) {
-            String originalProverb = proverb.toLowerCase();
-            System.out.println("Original Proverb: " + originalProverb);
+        PrintWriter writer = null;
+        try {
+            // Open the file (or create it if it doesn't exist) and associate the PrintWriter with it
+            writer = new PrintWriter("funny_proverbs_output.txt");
 
-            Set<String> changedWords = new HashSet<>();
-            // İlk dönüşüm (antonimler) denemesi
-            String modifiedProverb = applyTransformations(originalProverb, antonyms, changedWords, true);
+            int i = 1;
+            //for each proverb in turkishProverbs array
+            for (String proverb : proverbs.turkishProverbs) {
+                //make all characters lowercase since the antonyms and punPairs are in lowercase
+                String originalProverb = proverb.toLowerCase();
+                //System.out.println("Original Proverb: " + originalProverb);
+                writer.println(i +": " + originalProverb); // Write to file
 
-            // Eğer antonimlerle değişiklik yapıldıysa, changePairs kontrol etmeden devam et
-            if (changedWords.isEmpty()) {
-                // İkinci dönüşüm (changePairs) sadece antonimlerle değişiklik yapılmadıysa
-                modifiedProverb = applyTransformations(modifiedProverb, changes, changedWords, false);
+                Set<String> changedWords = new HashSet<>();
+                //First round for the antonyms
+                String modifiedProverb = applyTransformations(originalProverb, antonymsList, changedWords, true);
+
+                //If no changes were made with antonyms, continue with changePairs
+                if (changedWords.isEmpty()) {
+                    //second round only if no changes were made with antonyms
+                    modifiedProverb = applyTransformations(modifiedProverb, changes, changedWords, false);
+                }
+
+                String funnyQuestion = modifiedProverb + " " + determineQuestionSuffix(modifiedProverb) + "?";
+                //System.out.println("Funny Question: " + funnyQuestion + "\n");
+                writer.println(i +": " + funnyQuestion + "\n"); // Write to file
+                i++;
             }
-
-            String funnyQuestion = modifiedProverb + " " + determineQuestionSuffix(modifiedProverb) + "?";
-            System.out.println("Funny Question: " + funnyQuestion + "\n");
+        } catch (FileNotFoundException e) {
+            System.err.println("An error occurred while trying to write to the file: " + e.getMessage());
+        } finally {
+            if (writer != null) {
+                writer.close(); // Make sure to close the writer to flush its content to the file
+            }
         }
     }
 
+    //icindeki sozcuklerin hicbirinde zit anlam yoksa atasozlerini tutsun, sonra sozlukten baksin
+    //isimler ve sifatlar degissin
     private static String applyTransformations(String text, Map<String, String> transformations, Set<String> changedWords, boolean checkChanged) {
+        //create a stringbuilder to modify the text
         StringBuilder modifiedTextBuilder = new StringBuilder();
+        //split the text into words
         String[] words = text.split("\\s+");
         for (String word : words) {
-            // Eğer kelime daha önce değiştirildiyse ve kontrol etmemiz gerekiyorsa, atla
+            //if the word has been changed before and we need to check, skip
+            //this is so that we don't change the same word twice
             if (checkChanged && changedWords.contains(word)) {
                 modifiedTextBuilder.append(word).append(" ");
                 continue;
             }
             String modifiedWord = word;
+            //for each word in the text, check if it is in the transformations map
+            //this is where the antonyms or punPairs are applied
             for (Map.Entry<String, String> entry : transformations.entrySet()) {
+                //if the word is in the map, change it
                 if (word.equals(entry.getKey())) {
                     modifiedWord = entry.getValue();
-                    // Değişiklik yapıldıysa, bu kelimeyi kaydet
+                    //if the word is changed, add it to the changedWords set
                     changedWords.add(word);
                     break;
                 }
             }
+            //add the modified word to the stringbuilder
             modifiedTextBuilder.append(modifiedWord).append(" ");
         }
+        //return the modified text
         return modifiedTextBuilder.toString().trim();
     }
 
+    //add question suffix with this method
     private static String determineQuestionSuffix(String text) {
         char lastVowel = ' ';
         for (int i = text.length() - 1; i >= 0; i--) {
