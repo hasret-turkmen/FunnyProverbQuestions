@@ -1,0 +1,135 @@
+1: damlaya damlaya göl olur
+1: damlaya damlaya çöl olur mu?
+
+2: ağaç yaşken eğilir
+2: ağaç kuruyken eğilir mi?
+
+3: bir elin nesi var, iki elin sesi var
+3: dir elin nesi var, tiki elin sesi var mı?
+
+4: sabır acıdır, meyvesi tatlıdır
+4: sabır acıdır, meyvesi acıdır mı?
+
+5: taşıma suyla değirmen dönmez
+5: taşıma suyla değirmen döner mi?
+
+6: az veren candan, çok veren maldan
+6: çok alan candan, çok veren maldan mı?
+
+7: damdan düşenin halinden damdan düşen anlar
+7: damdan kalkanın halinden damdan kalkan anlar mı?
+
+8: gülü seven dikenine katlanır
+8: gölü seven dikenine katlanır mı?
+
+9: akıl akıldan üstündür
+9: sakal akıldan üstündür mü?
+
+10: borç yiğidin kamçısıdır
+10: korç yiğidin kamçısıdır mı?
+
+11: dert paylaşıldıkça azalır
+11: dert paylaşıldıkça çoğalır mı?
+
+12: gözden uzak olan gönülden de uzak olur
+12: gözden yakın olan gönülden de uzak olur mu?
+
+13: hak yerini bulur
+13: bak yerini bulur mu?
+
+14: rüzgar eken fırtına biçer
+14: ızgara eken fırtına biçer mi?
+
+15: tatlı dil yılanı deliğinden çıkarır
+15: acı dil yılanı deliğinden çıkarır mı?
+
+16: ucuz etin yahnisi yavan olur
+16: pahalı etin yahnisi yavan olur mu?
+
+17: varlık içinde darlık
+17: yokluk içinde darlık mı?
+
+18: zararın neresinden dönülse kardır
+18: zararın neresinden dönülse yağmurdur mu?
+
+19: aslan yattığı yerden belli olur
+19: paslan yattığı yerden belli olur mu?
+
+20: can çıkmayınca huy çıkmaz
+20: kan çıkmayınca huy çıkmaz mı?
+
+21: i̇yi dost kara günde belli olur
+21: i̇yi düşman kara günde belli olur mu?
+
+22: bir lisan, bir insan; iki lisan, iki insan
+22: dir lisan, dir insan; tiki lisan, tiki insan mı?
+
+23: sabah ola, hayır ola
+23: akşam ola, evet ola mı?
+
+24: su testisi su yolunda kırılır
+24: bu testisi bu yolunda kırılır mı?
+
+25: yatan aslandan koşan tilki yeğdir
+25: yatan aslandan koşan ilgi yeğdir mi?
+
+26: ateş olmayan yerden duman çıkmaz
+26: su olmayan yerden duman çıkmaz mı?
+
+27: balık baştan kokar
+27: kalık baştan kokar mı?
+
+28: düşenin dostu olmaz
+28: kalkanın düşmanı olmaz mı?
+
+29: gülme komşuna, gelir başına
+29: ağlama komşuna, gelmez başına mı?
+
+30: her şeyin yenisi, dostun eskisi makbuldür.
+30: her şeyin yenisi, dostun yenisi makbuldür. mü?
+
+31: mart kapıdan baktırır, kazma kürek yaktırır
+31: kart kapıdan baktırır, kazma kürek yaktırır mı?
+
+32: nerede birlik, orada dirlik
+32: ferde birlik, orada dirlik mi?
+
+33: olmayacak duaya amin denmez
+33: olmayacak budha'ya amin denmez mi?
+
+34: para parayı çeker
+34: para parayı iter mi?
+
+35: yaş kesen başı keser
+35: kuru kesen başı keser mi?
+
+36: zenginin malı, züğürdün çenesini yorar
+36: fakirin malı, züğürdün çenesini yorar mı?
+
+37: açık ağız aç kalmaz
+37: kapalı ağız tok kalmaz mı?
+
+38: küçük suda büyük balık olmaz
+38: büyük suda küçük balık olmaz mı?
+
+39: bir musibet bin nasihatten iyidir
+39: dir musibet bin nasihatten iyidir mi?
+
+40: güneş balçıkla sıvanmaz
+40: füme balçıkla sıvanmaz mı?
+
+41: üzüm üzüme baka baka kararır
+41: gözüm üzüme baka baka kararır mı?
+
+42: taş yerinde ağırdır
+42: taş yerinde hafiftir mi?
+
+43: kaz gelen yerden tavuk esirgenmez
+43: kaz giden yerden tavuk esirgenir mi?
+
+44: kedi uzanamadığı ciğerine mundar der
+44: dedi uzanamadığı ciğerine mundar der mi?
+
+45: ayağını yorganına göre uzat
+45: dayağını otağına göre uzat mı?
+
