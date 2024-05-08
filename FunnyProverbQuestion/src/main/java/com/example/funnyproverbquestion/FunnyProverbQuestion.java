@@ -1,10 +1,7 @@
 package com.example.funnyproverbquestion;
 
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 
@@ -39,21 +36,23 @@ public class FunnyProverbQuestion {
                 //make all characters lowercase since the antonyms and punPairs are in lowercase
                 String originalProverb = proverb.toLowerCase();
                 //System.out.println("Original Proverb: " + originalProverb);
-                writer.println(i +": " + originalProverb); // Write to file
+                writer.println(i + ": " + originalProverb); // Write to file
 
                 Set<String> changedWords = new HashSet<>();
-                //First round for the antonyms
+// First, apply antonyms transformations
                 String modifiedProverb = applyTransformations(originalProverb, antonymsList, changedWords, true);
 
-                //If no changes were made with antonyms, continue with changePairs
-                if (changedWords.isEmpty()) {
-                    //second round only if no changes were made with antonyms
-                    modifiedProverb = applyTransformations(modifiedProverb, changes, changedWords, false);
+// Check if the proverb has been changed by antonyms; if not, apply pun transformations.
+                if (modifiedProverb.equals(originalProverb)) {
+                    // Reset or create a new set for changedWords if you want to track changes separately for puns
+                    changedWords.clear();
+                    // Now indicate we're applying pun transformations with the second call
+                    modifiedProverb = applyTransformations(originalProverb, changes, changedWords, false);
                 }
 
                 String funnyQuestion = modifiedProverb + " " + determineQuestionSuffix(modifiedProverb) + "?";
                 //System.out.println("Funny Question: " + funnyQuestion + "\n");
-                writer.println(i +": " + funnyQuestion + "\n"); // Write to file
+                writer.println(i + ": " + funnyQuestion + "\n"); // Write to file
                 i++;
             }
         } catch (FileNotFoundException e) {
@@ -65,36 +64,39 @@ public class FunnyProverbQuestion {
         }
     }
 
-    //icindeki sozcuklerin hicbirinde zit anlam yoksa atasozlerini tutsun, sonra sozlukten baksin
-    //isimler ve sifatlar degissin
     private static String applyTransformations(String text, Map<String, String> transformations, Set<String> changedWords, boolean checkChanged) {
-        //create a stringbuilder to modify the text
+        String[] tokens = text.split("(?<=\\p{Punct})|(?=\\p{Punct})|\\s+");
         StringBuilder modifiedTextBuilder = new StringBuilder();
-        //split the text into words
-        String[] words = text.split("\\s+");
-        for (String word : words) {
-            //if the word has been changed before and we need to check, skip
-            //this is so that we don't change the same word twice
-            if (checkChanged && changedWords.contains(word)) {
-                modifiedTextBuilder.append(word).append(" ");
-                continue;
-            }
-            String modifiedWord = word;
-            //for each word in the text, check if it is in the transformations map
-            //this is where the antonyms or punPairs are applied
-            for (Map.Entry<String, String> entry : transformations.entrySet()) {
-                //if the word is in the map, change it
-                if (word.equals(entry.getKey())) {
-                    modifiedWord = entry.getValue();
-                    //if the word is changed, add it to the changedWords set
-                    changedWords.add(word);
-                    break;
+
+        // Determine the frequency of each word
+        Map<String, Integer> wordCount = new HashMap<>();
+        for (String token : tokens) {
+            wordCount.put(token, wordCount.getOrDefault(token, 0) + 1);
+        }
+
+        for (String token : tokens) {
+            String modifiedToken = token;
+
+            // Check if the token has a transformation and if it appears more than once
+            if (transformations.containsKey(token) && wordCount.get(token) > 1) {
+                modifiedToken = transformations.get(token);
+                changedWords.addAll(Collections.nCopies(wordCount.get(token), token)); // Track all occurrences as changed
+            } else {
+                // Attempt to get a transformation for the token, checking if changes are tracked
+                if (!checkChanged || !changedWords.contains(token)) {
+                    modifiedToken = transformations.getOrDefault(token, token);
+                    if (!modifiedToken.equals(token)) {
+                        changedWords.add(token); // Track the original token as changed
+                    }
                 }
             }
-            //add the modified word to the stringbuilder
-            modifiedTextBuilder.append(modifiedWord).append(" ");
+
+            // Append the modified token. If it's punctuation, don't add an extra space.
+            if (modifiedTextBuilder.length() > 0 && !token.matches("\\p{Punct}")) {
+                modifiedTextBuilder.append(" ");
+            }
+            modifiedTextBuilder.append(modifiedToken);
         }
-        //return the modified text
         return modifiedTextBuilder.toString().trim();
     }
 
