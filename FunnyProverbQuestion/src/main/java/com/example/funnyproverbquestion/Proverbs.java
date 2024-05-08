@@ -22,7 +22,7 @@ public class Proverbs {
             "Zararın neresinden dönülse kardır",
             "Aslan yattığı yerden belli olur",
             "Can çıkmayınca huy çıkmaz",
-            "İyi dost kara günde belli olur",
+            "iyi dost kara günde belli olur",
             "Bir lisan, bir insan; iki lisan, iki insan",
             "Sabah ola, hayır ola",
             "Su testisi su yolunda kırılır",
@@ -31,7 +31,7 @@ public class Proverbs {
             "Balık baştan kokar",
             "Düşenin dostu olmaz",
             "Gülme komşuna, gelir başına",
-            "Her şeyin yenisi, dostun eskisi makbuldür.",
+           "Her şeyin yenisi, dostun eskisi makbuldür.",
             "Mart kapıdan baktırır, kazma kürek yaktırır",
             "Nerede birlik, orada dirlik",
             "Olmayacak duaya amin denmez",
@@ -45,7 +45,7 @@ public class Proverbs {
             "Üzüm üzüme baka baka kararır",
             "Taş yerinde ağırdır",
             "Kaz gelen yerden tavuk esirgenmez",
-            "Kedi uzanamadığı ciğerine mundar der",
+            "Kedi uzanamadığı ciğere mundar der",
             "Ayağını yorganına göre uzat",
     };
 }
